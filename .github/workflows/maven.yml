@@ -2,7 +2,7 @@ name: trainer-service
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -21,15 +21,5 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Restart Service on Port 8081
-      run: |
-        # Kill existing process using port 8081
-        PID=$(sudo lsof -t -i:8081)
-        if [ ! -z "$PID" ]; then
-          echo "Killing process on port 8081 (PID = $PID)"
-          sudo kill -9 $PID
-        fi
-
-        # Run the new jar
-        echo "Starting new JAR..."
-        sudo nohup java -jar ./target/trainer-service-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+    - name: Execute Jar File
+      run: sudo kill -9 sudo lsof -t -i:8081 & sudo java -jar /root/actions-runner/_work/system-api/system-api/target/system-api-0.0
