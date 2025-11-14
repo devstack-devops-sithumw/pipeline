@@ -14,6 +14,6 @@ public class TestController {
 
     @GetMapping
     public String test(){
-        return "succeed!";
+        return "succeed! Test 01";
     }
 }
