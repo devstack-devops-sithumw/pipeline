@@ -12,6 +12,13 @@ pipeline {
             }
         }
 
+        stage('Grant Execute Permission') {
+            steps {
+                // Make sure gradlew is executable
+                sh 'chmod +x gradlew'
+            }
+        }
+
         stage('Build') {
             steps {
                 sh './gradlew build'
